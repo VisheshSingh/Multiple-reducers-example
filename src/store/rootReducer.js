@@ -1,22 +1,10 @@
-const initState = {
-  a: 1,
-  b: 1
-};
+import reducerA from "./reducerA";
+import reducerB from "./reducerB";
+import { combineReducers } from "redux";
 
-const rootReducer = (state = initState, action) => {
-  if (action.type === "UPDATE_A") {
-    return {
-      ...state,
-      a: state.a + state.b
-    };
-  }
-  if (action.type === "UPDATE_B") {
-    return {
-      ...state,
-      b: state.a + state.b
-    };
-  }
-  return state;
-};
+const rootReducer = combineReducers({
+  redA: reducerA,
+  redB: reducerB
+});
 
 export default rootReducer;

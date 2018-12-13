@@ -8,12 +8,16 @@ class MyComp extends Component {
         <div className="button-1">
           <span>A:</span>
           <span>{this.props.a}</span>
-          <button onClick={this.props.updateA}>Update A</button>
+          <button onClick={() => this.props.updateA(this.props.b)}>
+            Update A
+          </button>
         </div>
         <div className="button-2">
           <span>B:</span>
           <span>{this.props.b}</span>
-          <button onClick={this.props.updateB}>Update B</button>
+          <button onClick={() => this.props.updateB(this.props.a)}>
+            Update B
+          </button>
         </div>
       </div>
     );
@@ -22,15 +26,15 @@ class MyComp extends Component {
 
 const mapStateToProps = state => {
   return {
-    a: state.a,
-    b: state.b
+    a: state.redA.a,
+    b: state.redB.b
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    updateA: () => dispatch({ type: "UPDATE_A" }),
-    updateB: () => dispatch({ type: "UPDATE_B" })
+    updateA: b => dispatch({ type: "UPDATE_A", value: b }),
+    updateB: a => dispatch({ type: "UPDATE_B", value: a })
   };
 };
 
